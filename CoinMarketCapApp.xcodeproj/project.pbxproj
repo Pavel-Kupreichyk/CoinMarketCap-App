@@ -19,6 +19,8 @@
 		B4D0082E23702FA700ABB376 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D0082D23702FA700ABB376 /* StoryboardInitializable.swift */; };
 		B4D008302370328600ABB376 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D0082F2370328600ABB376 /* MainViewModel.swift */; };
 		B4D008332370361E00ABB376 /* CoinMarketCapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D008322370361E00ABB376 /* CoinMarketCapService.swift */; };
+		B4D00836237044D700ABB376 /* Cryptocurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D00835237044D700ABB376 /* Cryptocurrency.swift */; };
+		B4D00838237047A200ABB376 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D00837237047A200ABB376 /* Platform.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		B4D0082D23702FA700ABB376 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
 		B4D0082F2370328600ABB376 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B4D008322370361E00ABB376 /* CoinMarketCapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarketCapService.swift; sourceTree = "<group>"; };
+		B4D00835237044D700ABB376 /* Cryptocurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cryptocurrency.swift; sourceTree = "<group>"; };
+		B4D00837237047A200ABB376 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 		B4D008342370446800ABB376 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B4D00835237044D700ABB376 /* Cryptocurrency.swift */,
+				B4D00837237047A200ABB376 /* Platform.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D00838237047A200ABB376 /* Platform.swift in Sources */,
 				B4D008302370328600ABB376 /* MainViewModel.swift in Sources */,
 				B4D008292370271300ABB376 /* AppCoordinator.swift in Sources */,
 				B4D0082B2370274E00ABB376 /* MainCoordinator.swift in Sources */,
@@ -268,6 +275,7 @@
 				B431A254236C4C7A00B766B7 /* MainViewController.swift in Sources */,
 				B4D0082723701B8E00ABB376 /* BaseCoordinator.swift in Sources */,
 				B431A252236C4C7A00B766B7 /* AppDelegate.swift in Sources */,
+				B4D00836237044D700ABB376 /* Cryptocurrency.swift in Sources */,
 				B4D008332370361E00ABB376 /* CoinMarketCapService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

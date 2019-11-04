@@ -40,8 +40,12 @@ class CoinMarketCapService {
                                           ParameterName.limit.rawValue: itemsPerPage,
                                           ParameterName.start.rawValue: (page - 1) * itemsPerPage + 1]
         
-        json(.get, url, parameters: parameters ,headers: headers)
+        RxAlamofire.requestJSON(.get, url, parameters: parameters ,headers: headers)
             .observeOn(MainScheduler.instance)
-            .subscribe { print($0) }
+            .subscribe(onNext: {[weak self] (_, json) in
+                if let data = try? JSONSerialization.data(withJSONObject: json) {
+                    print(try! JSONDecoder().decode(CryptocurrencyPage.self, from: data))
+                }
+            })
     }
 }
