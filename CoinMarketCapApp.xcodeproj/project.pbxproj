@@ -21,6 +21,7 @@
 		B4D008332370361E00ABB376 /* CoinMarketCapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D008322370361E00ABB376 /* CoinMarketCapService.swift */; };
 		B4D00836237044D700ABB376 /* Cryptocurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D00835237044D700ABB376 /* Cryptocurrency.swift */; };
 		B4D00838237047A200ABB376 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D00837237047A200ABB376 /* Platform.swift */; };
+		B4D0083A2370696B00ABB376 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D008392370696B00ABB376 /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		B4D008322370361E00ABB376 /* CoinMarketCapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarketCapService.swift; sourceTree = "<group>"; };
 		B4D00835237044D700ABB376 /* Cryptocurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cryptocurrency.swift; sourceTree = "<group>"; };
 		B4D00837237047A200ABB376 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		B4D008392370696B00ABB376 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				B4D0082D23702FA700ABB376 /* StoryboardInitializable.swift */,
+				B4D008392370696B00ABB376 /* ViewModelType.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D0083A2370696B00ABB376 /* ViewModelType.swift in Sources */,
 				B4D00838237047A200ABB376 /* Platform.swift in Sources */,
 				B4D008302370328600ABB376 /* MainViewModel.swift in Sources */,
 				B4D008292370271300ABB376 /* AppCoordinator.swift in Sources */,
