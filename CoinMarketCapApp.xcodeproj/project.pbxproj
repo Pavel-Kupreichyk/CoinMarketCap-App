@@ -88,17 +88,33 @@
 		B431A250236C4C7A00B766B7 /* CoinMarketCapApp */ = {
 			isa = PBXGroup;
 			children = (
+				B483D825237155BA004209D1 /* Views */,
+				B483D8242371558F004209D1 /* ViewModels */,
 				B4D008342370446800ABB376 /* Models */,
 				B4D008312370360500ABB376 /* Services */,
 				B4D0082C23702F2400ABB376 /* Support */,
 				B4D0082523701B6900ABB376 /* Coordinators */,
 				B4D0082423701AAC00ABB376 /* Resources */,
 				B431A251236C4C7A00B766B7 /* AppDelegate.swift */,
-				B431A253236C4C7A00B766B7 /* MainViewController.swift */,
-				B4D0082F2370328600ABB376 /* MainViewModel.swift */,
 				B431A25D236C4C7C00B766B7 /* Info.plist */,
 			);
 			path = CoinMarketCapApp;
+			sourceTree = "<group>";
+		};
+		B483D8242371558F004209D1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B4D0082F2370328600ABB376 /* MainViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B483D825237155BA004209D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B431A253236C4C7A00B766B7 /* MainViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B4D0082423701AAC00ABB376 /* Resources */ = {
