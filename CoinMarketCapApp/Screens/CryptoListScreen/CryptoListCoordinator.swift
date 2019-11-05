@@ -9,7 +9,7 @@
 import RxSwift
 import UIKit
 
-class MainCoordinator: BaseCoordinator<Void> {
+class CryptoListCoordinator: BaseCoordinator<Void> {
     private let window: UIWindow
     
     init(window: UIWindow) {
@@ -23,8 +23,8 @@ class MainCoordinator: BaseCoordinator<Void> {
     }
     
     private func initMainVC() {
-        let viewController = MainViewController.initFromStoryboard(name: "Main")
-        viewController.viewModel = MainViewModel()
+        let viewController = CryptoListViewController.initFromStoryboard(name: "Main")
+        viewController.viewModel = CryptoListViewModel()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
