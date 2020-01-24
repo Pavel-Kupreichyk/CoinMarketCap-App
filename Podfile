@@ -4,9 +4,10 @@
 target 'CoinMarketCapApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'RxSwift', '~> 5'
-  pod 'RxCocoa', '~> 5'
-  pod 'RxAlamofire'
+  pod 'RxSwift', '~> 5.0'
+  pod 'RxCocoa', '~> 5.0'
+  pod 'RxAlamofire', '~> 5.1'
+  pod 'Kingfisher', '~> 5.13'
   # Pods for CoinMarketCapApp
 
 end

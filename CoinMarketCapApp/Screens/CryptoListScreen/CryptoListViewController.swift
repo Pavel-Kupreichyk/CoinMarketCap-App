@@ -8,9 +8,10 @@
 
 import UIKit
 import RxSwift
+import Kingfisher
 
 class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, StoryboardInitializable {
-
+    //https://s2.coinmarketcap.com/static/img/coins/64x64/4.png
     @IBOutlet weak var cryptocurrencyTableView: UITableView!
 
     override func setupUI() {
@@ -31,6 +32,10 @@ class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, Storybo
     }
 
     private func setupCryptocurrencyCell(cell: CryptocurrencyTableViewCell, withCryptocurrency data: Cryptocurrency) {
+        let url = URL(string: "https://s2.coinmarketcap.com/static/img/coins/64x64/\(data.id).png")
+        cell.currencyImage.kf.setImage(with: url)
+        cell.currencyNumber.text = String(data.cmc_rank)
         cell.currencyName.text = data.name
+        
     }
 }

@@ -40,7 +40,7 @@ class CryptoListViewModel : ViewModelType {
                 guard let self = self else {
                     fatalError("Self does not exist")
                 }
-                let cryptoStream = self.coinMarketCapService.FetchCryptocurrencyMap(page: self.nextPage)
+                let cryptoStream = self.coinMarketCapService.FetchCryptocurrencies(page: self.nextPage)
                 self.nextPage += 1
                 return cryptoStream
             }

@@ -12,8 +12,8 @@ import Foundation
 class CoinMarketCapService {
     
     public enum SortType: String {
-        case marketCap = "cmc_rank"
-        case id
+        case marketCap = "market_cap"
+        case percentChange24 = "percent_change_24h"
     }
     
     private enum HeaderName: String {
@@ -31,8 +31,8 @@ class CoinMarketCapService {
     private let key = "464ee494-6f03-48cb-8425-80c051ae6628"
     private let baseURL = "https://pro-api.coinmarketcap.com/v1"
     
-    public func FetchCryptocurrencyMap(sortType: SortType = .marketCap, page: Int, itemsPerPage: Int = 25) -> Single<CryptocurrencyPage> {
-        let url = "\(baseURL)/cryptocurrency/map"
+    public func FetchCryptocurrencies(sortType: SortType = .marketCap, page: Int, itemsPerPage: Int = 25) -> Single<CryptocurrencyPage> {
+        let url = "\(baseURL)/cryptocurrency/listings/latest"
         let headers = [HeaderName.apiKey.rawValue: key,
                        HeaderName.accept.rawValue: "application/json"]
         
@@ -40,7 +40,7 @@ class CoinMarketCapService {
                                           ParameterName.limit.rawValue: itemsPerPage,
                                           ParameterName.start.rawValue: (page - 1) * itemsPerPage + 1]
         
-        return RxAlamofire.requestJSON(.get, url, parameters: parameters ,headers: headers)
+        return RxAlamofire.requestJSON(.get, url, parameters: parameters, headers: headers)
             .map{(_, json) -> CryptocurrencyPage in
                 guard let data = try? JSONSerialization.data(withJSONObject: json),
                 let result = try? JSONDecoder().decode(CryptocurrencyPage.self, from: data) else {
