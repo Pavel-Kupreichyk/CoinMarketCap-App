@@ -13,6 +13,7 @@ import Kingfisher
 class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, StoryboardInitializable {
     @IBOutlet weak var cryptocurrencyTableView: UITableView!
     let refreshControl = UIRefreshControl()
+    var stopRefreshAfterDrag = false
     
     override func setupUI() {
         cryptocurrencyTableView.refreshControl = refreshControl
@@ -26,11 +27,26 @@ class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, Storybo
         let outputs = viewModel?.setupStreams(input: inputs)
 
         outputs?.cryptocurrencyList
-            .do(onNext: {[weak self] _ in self?.refreshControl.endRefreshing()})
+            .do(onNext: {[weak self] _ in
+                if let self = self {
+                    if self.cryptocurrencyTableView.isDragging {
+                        self.stopRefreshAfterDrag = true
+                    } else {
+                        self.refreshControl.endRefreshing()
+                    }
+                }
+            })
             .drive(cryptocurrencyTableView.rx.items(cellIdentifier: CryptocurrencyTableViewCell.reuseIdentifier,
                                                     cellType: CryptocurrencyTableViewCell.self)) { [weak self] (_, currency, cell) in
                                                         self?.setupCryptocurrencyCell(cell: cell, withCryptocurrency: currency)
             }
+            .disposed(by: disposeBag)
+        
+        cryptocurrencyTableView.rx.didEndDragging.subscribe(onNext: {[weak self] _ in
+            if let self = self, self.stopRefreshAfterDrag {
+                self.refreshControl.endRefreshing()
+                self.stopRefreshAfterDrag = false
+            }})
             .disposed(by: disposeBag)
     }
 
