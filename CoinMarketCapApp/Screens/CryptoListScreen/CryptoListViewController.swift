@@ -11,19 +11,22 @@ import RxSwift
 import Kingfisher
 
 class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, StoryboardInitializable {
-    //https://s2.coinmarketcap.com/static/img/coins/64x64/4.png
     @IBOutlet weak var cryptocurrencyTableView: UITableView!
-
+    let refreshControl = UIRefreshControl()
+    
     override func setupUI() {
+        cryptocurrencyTableView.refreshControl = refreshControl
         let nib = UINib(nibName: "CryptocurrencyTableViewCell", bundle: nil)
         cryptocurrencyTableView.register(nib, forCellReuseIdentifier: CryptocurrencyTableViewCell.reuseIdentifier)
     }
 
     override func setupBindings() {
-        let inputs = CryptoListViewModel.StaticInput(loadNextPage: Observable.never())
+        let inputs = CryptoListViewModel.StaticInput(incrementCurrPage: Observable.never(),
+                                                     refresh: refreshControl.rx.controlEvent(.valueChanged).map({_ in}))
         let outputs = viewModel?.setupStreams(input: inputs)
 
         outputs?.cryptocurrencyList
+            .do(onNext: {[weak self] _ in self?.refreshControl.endRefreshing()})
             .drive(cryptocurrencyTableView.rx.items(cellIdentifier: CryptocurrencyTableViewCell.reuseIdentifier,
                                                     cellType: CryptocurrencyTableViewCell.self)) { [weak self] (_, currency, cell) in
                                                         self?.setupCryptocurrencyCell(cell: cell, withCryptocurrency: currency)

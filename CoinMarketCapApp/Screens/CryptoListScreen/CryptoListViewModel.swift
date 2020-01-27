@@ -15,7 +15,8 @@ class CryptoListViewModel : ViewModelType {
     struct DynamicOutput {}
     
     struct StaticInput {
-        let loadNextPage: Observable<Void>
+        let incrementCurrPage: Observable<Void>
+        let refresh: Observable<Void>
     }
     
     struct StaticOutput {
@@ -26,22 +27,22 @@ class CryptoListViewModel : ViewModelType {
     public var dynamicOutput: CryptoListViewModel.DynamicOutput?
     
     private let coinMarketCapService: CoinMarketCapService
-    private var nextPage: Int
+    private var currPage: Int
     
     init(coinMarketCapService: CoinMarketCapService = CoinMarketCapService()) {
         self.coinMarketCapService = coinMarketCapService;
-        nextPage = 1
+        currPage = 1
     }
     
     public func setupStreams(input: CryptoListViewModel.StaticInput) -> CryptoListViewModel.StaticOutput {
-        let cryptocurrencyList = input.loadNextPage
+        let cryptocurrencyList = input.refresh
             .startWith(())
             .flatMap{ [weak self] _ -> Single<CryptocurrencyPage> in
                 guard let self = self else {
                     fatalError("Self does not exist")
                 }
-                let cryptoStream = self.coinMarketCapService.FetchCryptocurrencies(page: self.nextPage)
-                self.nextPage += 1
+                self.currPage = 1
+                let cryptoStream = self.coinMarketCapService.FetchCryptocurrencies(page: self.currPage)
                 return cryptoStream
             }
             .map{$0.data}
