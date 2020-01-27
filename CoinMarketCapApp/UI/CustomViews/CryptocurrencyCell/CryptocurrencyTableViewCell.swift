@@ -13,6 +13,7 @@ class CryptocurrencyTableViewCell: UITableViewCell {
     @IBOutlet weak var currencyName: UILabel!
     @IBOutlet weak var currencyImage: UIImageView!
     @IBOutlet weak var currencyNumber: UILabel!
+    @IBOutlet weak var currencyPrice: UILabel!
     
     static let reuseIdentifier = "CryptocurrencyCell"
     

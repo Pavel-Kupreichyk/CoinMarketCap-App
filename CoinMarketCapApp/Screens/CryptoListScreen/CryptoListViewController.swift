@@ -37,5 +37,20 @@ class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, Storybo
         cell.currencyNumber.text = String(data.cmc_rank)
         cell.currencyName.text = data.name
         
+        if let price = data.quote["USD"]?.price {
+            cell.currencyPrice.text = "$"+getFormattedPrice(price)
+        } else {
+            cell.currencyPrice.text = "-"
+        }
+    }
+    
+    private func getFormattedPrice(_ price: Double) -> String {
+        var rank = 5
+        var p = price
+        while(p > 1) {
+            p /= 10
+            rank -= rank > 0 ? 1 : 0
+        }
+        return String(format:"%.*f", rank, price)
     }
 }
