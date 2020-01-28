@@ -12,6 +12,8 @@ import Kingfisher
 
 class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, StoryboardInitializable {
     @IBOutlet weak var cryptocurrencyTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     let refreshControl = UIRefreshControl()
     var stopRefreshAfterDrag = false
     
@@ -22,10 +24,25 @@ class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, Storybo
     }
 
     override func setupBindings() {
-        let inputs = CryptoListViewModel.StaticInput(incrementCurrPage: Observable.never(),
-                                                     refresh: refreshControl.rx.controlEvent(.valueChanged).map({_ in}))
+        let inputs = CryptoListViewModel.StaticInput(
+            incrementCurrPage: cryptocurrencyTableView.rx.contentOffset
+                .filter({[weak self] offset in
+                if let self = self, !self.activityIndicator.isAnimating {
+                    return offset.y + self.cryptocurrencyTableView.frame.size.height + 20 >
+                        self.cryptocurrencyTableView.contentSize.height
+                }
+                return false
+                }).map {_ in},
+            
+            refresh: refreshControl.rx.controlEvent(.valueChanged).map{_ in}
+        )
+        
         let outputs = viewModel?.setupStreams(input: inputs)
-
+        
+        outputs?.isLoading
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
         outputs?.cryptocurrencyList
             .do(onNext: {[weak self] _ in
                 if let self = self {
