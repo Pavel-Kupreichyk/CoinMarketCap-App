@@ -73,10 +73,21 @@ class CryptoListViewController: ViewControllerMVVM<CryptoListViewModel>, Storybo
         cell.currencyNumber.text = String(data.cmc_rank)
         cell.currencyName.text = data.name
         
-        if let price = data.quote["USD"]?.price {
-            cell.currencyPrice.text = "$"+getFormattedPrice(price)
+        if let quote = data.quote["USD"] {
+            cell.currencyPrice.text = "$"+getFormattedPrice(quote.price)
+            cell.percentChange.text = String(format:"%.2f", quote.percent_change_24h)+"%"
+            if quote.percent_change_24h < 0 {
+                cell.arrowImage.image = UIImage(named: "DownArrow")
+                cell.percentChange.textColor = UIColor.red
+                cell.arrowImage.tintColor = UIColor.red
+            } else {
+                cell.arrowImage.image = UIImage(named: "UpArrow")
+                cell.arrowImage.tintColor = UIColor.green
+                cell.percentChange.textColor = UIColor.green
+            }
         } else {
             cell.currencyPrice.text = "-"
+            cell.percentChange.text = "-"
         }
     }
     
